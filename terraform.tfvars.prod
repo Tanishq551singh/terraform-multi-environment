@@ -1,0 +1,6 @@
+region        = "ap-south-1"
+project_name  = "terraform-multi-environment"
+environment   = "prod"
+instance_type = "t3.small"
+instance_count = 3
+ami_name      = "al2023-ami-*-x86_64"

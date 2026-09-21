@@ -114,3 +114,21 @@ output "vpc_id" {
   description = "VPC used by the environment"
   value       = data.aws_vpc.default.id
 }
+
+output "instance_names" {
+  description = "Names of EC2 instances"
+  value = [
+    for instance in aws_instance.app :
+    instance.tags["Name"]
+  ]
+}
+
+output "project_info" {
+  description = "Project and environment information"
+  value = {
+    project     = var.project_name
+    environment = var.environment
+    region      = var.region
+    instances   = var.instance_count
+  }
+}

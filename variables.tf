@@ -12,6 +12,11 @@ variable "project_name" {
 variable "environment" {
   description = "Environment name"
   type        = string
+
+  validation {
+    condition     = contains(["dev", "prod"], var.environment)
+    error_message = "Environment must be either 'dev' or 'prod'."
+  }
 }
 
 variable "instance_type" {
@@ -22,6 +27,11 @@ variable "instance_type" {
 variable "instance_count" {
   description = "Number of EC2 instances"
   type        = number
+
+  validation {
+    condition     = var.instance_count >= 1 && var.instance_count <= 5
+    error_message = "Instance count must be between 1 and 5."
+  }
 }
 
 variable "ami_name" {
